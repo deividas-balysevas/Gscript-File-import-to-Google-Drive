@@ -1,0 +1,14 @@
+function DownloadToGoogledrive() {
+  var fileURL = "File URL";
+  var folder = "FOLDER_ID";
+  var response = UrlFetchApp.fetch(fileURL, {muteHttpExceptions: true});
+  var rc = response.getResponseCode();
+  
+  if (rc == 200) {
+    var fileBlob = response.getBlob()
+    var folder = DriveApp.getFolderById(folder);
+    if (folder != null) {
+      var file = folder.createFile(fileBlob);
+    }
+  }
+}
